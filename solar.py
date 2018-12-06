@@ -9,3 +9,8 @@ def get_clear_sky_radiation(lat, lon, timestamp_str, tz):
     altitude = ps.get_altitude(lat, lon, tz_aware)
     watts_per_sq_meter = ps.radiation.get_radiation_direct(tz_aware, altitude)
     return watts_per_sq_meter
+
+def radiation_apply_funct(lat, lon, tz):
+    def get_radiation(ts):
+        return get_clear_sky_radiation(lat, lon, ts, tz)
+    return get_radiation

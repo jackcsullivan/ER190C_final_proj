@@ -12,7 +12,7 @@ def get_hourly_weather(lat, lon, timestamp_str, tz='US/Pacific', key='c75fe89710
     with_time = with_location + ',' + str(epoch)
     resp = requests.get(with_time)
     if resp.status_code != 200:
-        raise RuntimeError('API call errored with code: ' + resp.status_code)
+        raise RuntimeError('API call errored with code: ' + str(resp.status_code))
     data_dict = resp.json()
     daterange = pd.date_range(timestamp_str, periods=24, freq='1H')
     df = pd.DataFrame(data_dict['hourly']['data'])
